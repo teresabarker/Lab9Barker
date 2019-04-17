@@ -1,0 +1,120 @@
+/*
+Project: Lab 9
+Purpose Details: Pizza ordering application
+Course: IST 242
+Author: Teresa Barker
+Date Developed: 3/14/19
+Last Date Changed: 3/26/19
+Rev: 2
+ */
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Main main = new Main();
+
+        final char EXIT_CODE = 'E';
+        final char CUST_CODE = 'C';
+        final char CUST_LIST_CODE = 'L';
+        final char MENU_CODE = 'M';
+        final char ORDE_CODE = 'O';
+        final char ORDE_LIST_CODE = 'A';
+        final char MAKE_TRAN_CODE = 'T';
+        final char PRNT_TRAN_LIST = 'Y';
+        final char HELP_CODE = '?';
+        char userAction;
+        final String PROMPT_ACTION = "Add 'C'ustomer, 'L'ist Customers, List 'M'enu, Add 'O'rder, List 'A'll Orders, Make 'T'ransaction, List 'Y'our Transactions, or 'E'xit: ";
+        ArrayList<Customer> cList = new ArrayList<>();
+        ArrayList<Menu> mList = new ArrayList<>();
+        ArrayList<Order> oList = new ArrayList<>();
+        ArrayList<Transaction> tList = new ArrayList<>();
+
+        //Transaction trans1 = new Transaction(1);
+
+        Menu menu1 = new Menu(1, "Plain Pizza", 10.99);
+        Menu menu2 = new Menu(2, "Pepperoni Pizza", 10.99);
+        Menu menu3 = new Menu(3, "Margherita Pizza", 10.99);
+        Menu menu4 = new Menu(4, "Hawaiian Pizza", 10.99);
+        Menu menu5 = new Menu(5, "Meat-Lover Pizza", 10.99);
+
+        mList.add(menu1);
+        mList.add(menu2);
+        mList.add(menu3);
+        mList.add(menu4);
+        mList.add(menu5);
+
+        //cList.add();
+        //List.add(order1);
+        //tList.add(trans1);
+
+        userAction = getAction(PROMPT_ACTION);
+
+        while (userAction != EXIT_CODE) {
+            switch(userAction) {
+                case CUST_CODE : cList.add(main.addCustomer());
+                    break;
+                case CUST_LIST_CODE : Customer.listCustomers(cList);
+                    break;
+                case MENU_CODE : Menu.listMenu(mList);
+                    break;
+                case ORDE_CODE : oList.add(main.addOrder());
+                    break;
+                case ORDE_LIST_CODE : Order.listOrders(oList);
+                    break;
+                case MAKE_TRAN_CODE : tList.add(main.addTransaction());
+                    break;
+                case PRNT_TRAN_LIST : Transaction.listTransactions(tList);
+                    break;
+            }
+
+            userAction = getAction(PROMPT_ACTION);
+        }
+    }
+    public static char getAction(String prompt) {
+        Scanner scnr = new Scanner(System.in);
+        String answer = "";
+        System.out.println(prompt);
+        answer = scnr.nextLine().toUpperCase() + " ";
+        char firstChar = answer.charAt(0);
+        return firstChar;
+    }
+
+    public Customer addCustomer() {
+        Customer cust = new Customer();
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Please Enter your First Name: ");
+        cust.setcustomerFirstName(scnr.nextLine());
+        System.out.println("Please Enter your Phone Number in the format 111-111-1111 ");
+        cust.setCustomerPhoneNumber(scnr.nextLine());
+        return cust;
+    }
+
+    public Order addOrder() {
+        double orderTotal = 0;
+        Order ord = new Order();
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("What would you like to order?");
+        ord.setorderChoice(scnr.nextLine());
+        System.out.println("How many would you like to order?");
+        ord.setorderQuantity(scnr.nextInt());
+        orderTotal = ord.getorderQantity() * 10.99;
+        System.out.println("Your total is: " + orderTotal);
+        System.out.println("Please go to Transactions to pay.");
+        return ord;
+    }
+    public Transaction addTransaction() {
+        Transaction trans = new Transaction();
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("How would you like to pay: cash or credit?");
+        trans.setPaymentType(scnr.nextLine());
+        System.out.println("Great! Thank you and have a good day!");
+        return trans;
+
+    }
+
+}
