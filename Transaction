@@ -1,0 +1,50 @@
+/*
+Project: Lab 9
+Purpose Details: Pizza ordering application
+Course: IST 242
+Author: Teresa Barker
+Date Developed: 3/14/19
+Last Date Changed: 3/26/19
+Rev: 2
+ */
+package com.company;
+
+import java.util.ArrayList;
+
+// enum PaymentType {cash, credit}
+
+public class Transaction {
+
+    //Class Level Variables - Protect the data
+    private int transactionId;
+    private Order order;
+    private String payment;
+
+    //Constructor Methods
+
+    public Transaction() { transactionId++;}
+
+    public Transaction(int _transactionId, Order _order, String _payment){
+        this.transactionId = _transactionId;
+        this.order = _order;
+        this.payment = _payment;
+    }
+
+    //Setters and Getters
+    public int getTransactionId() { return transactionId; }
+    public void setTransactionId(int _transactionId) {this.transactionId = _transactionId;}
+
+    public Order getOrder() { return order; }
+    public void setOrder(Order _order) {this.order = _order;}
+
+    public String getPaymentType() { return payment; }
+    public void setPaymentType(String _payment) {this.payment = _payment;}
+
+    public static void listTransactions(ArrayList<Transaction> tList){
+        for (Transaction trans: tList){
+            System.out.println("Transaction ID: " + trans.getTransactionId());
+            System.out.println("Payment Type: " + trans.getPaymentType());
+        }
+    }
+
+}
