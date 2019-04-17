@@ -1,0 +1,47 @@
+/*
+Project: Lab 9
+Purpose Details: Pizza ordering application
+Course: IST 242
+Author: Teresa Barker
+Date Developed: 3/14/19
+Last Date Changed: 3/26/19
+Rev: 2
+ */
+package com.company;
+
+import java.util.ArrayList;
+
+public class Order {
+    //Class Level Variables - Protect the data
+    private int orderId;
+    private String orderChoice;
+    private int orderQuantity;
+
+    //Constructor Methods
+    public Order(int _orderId){
+        this.orderId = _orderId;
+    }
+
+    public Order() {
+        orderId++;
+    }
+
+    //Setters and Getters
+    public int getorderId() { return orderId; }
+    public void setorderId(int _orderId) {this.orderId = _orderId;}
+
+    public String getorderChoice() { return orderChoice; }
+    public void setorderChoice(String _orderChoice) {this.orderChoice = _orderChoice;}
+
+    public int getorderQantity() { return orderQuantity; }
+    public void setorderQuantity(int _orderQuantity) {
+        this.orderQuantity = _orderQuantity;
+    }
+
+    public static void listOrders(ArrayList<Order> oList) {
+        System.out.println("These are our current orders list:\n");
+        for (Order ord : oList) {
+            System.out.println("Item: " + ord.getorderChoice() + " Quantity: " + ord.orderQuantity + " ID: " + ord.getorderId());
+        }
+    }
+}
