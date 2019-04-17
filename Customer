@@ -1,0 +1,48 @@
+/*
+Project: Lab 9
+Purpose Details: Pizza ordering application
+Course: IST 242
+Author: Teresa Barker
+Date Developed: 3/14/19
+Last Date Changed: 3/26/19
+Rev: 2
+ */
+package com.company;
+
+import java.util.ArrayList;
+
+public class Customer {
+    //Class Level Variables - Protect the data
+    private int customerId = 0;
+    private String customerFirstName;
+    private String customerPhoneNumber;
+
+    //Constructor Methods
+    public Customer(int _customerId, String _customerFirstName){
+        this.customerId = _customerId;
+        this.customerFirstName = _customerFirstName;
+    }
+
+    public Customer() { customerId++;}
+
+    //Setters and Getters
+    public int getcustomerId() { return customerId; }
+    public void setcustomerId(int _customerId) {
+        this.customerId = _customerId;
+    }
+
+    public String getcustomerFirstName() { return customerFirstName;}
+    public void setcustomerFirstName(String _customerName) { this.customerFirstName = _customerName; }
+
+    public String getCustomerPhoneNumber() { return customerPhoneNumber;}
+    public void setCustomerPhoneNumber(String _customerPhoneNumber) {
+        this.customerPhoneNumber = _customerPhoneNumber;
+    }
+
+    public static void listCustomers(ArrayList<Customer> cList) {
+        System.out.println("Here's our customer list:\n");
+        for (Customer cust : cList) {
+            System.out.println("First Name: " + cust.getcustomerFirstName() + " Phone: " + cust.getCustomerPhoneNumber() + " ID: " + cust.getcustomerId());
+        }
+    }
+}
